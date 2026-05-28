@@ -585,6 +585,64 @@ footer{
   font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:0.05em;
 }
 
+/* CATALOG */
+.catalog{padding:100px 80px}
+.cat-filters{
+  display:flex;gap:10px;flex-wrap:wrap;
+  margin-bottom:50px;
+}
+.cat-btn{
+  padding:10px 22px;
+  border:1px solid var(--border);
+  background:transparent;color:var(--muted);
+  font-family:'Jost',sans-serif;font-size:11px;
+  letter-spacing:0.15em;text-transform:uppercase;
+  cursor:none;transition:all 0.3s;font-weight:500;
+}
+.cat-btn:hover{border-color:var(--gold);color:var(--gold)}
+.cat-btn.active{background:var(--gold);border-color:var(--gold);color:var(--cream)}
+.cat-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);
+  border:1px solid var(--border);
+}
+.cat-card{
+  background:var(--cream);
+  overflow:hidden;transition:all 0.4s;
+  cursor:none;display:flex;flex-direction:column;
+}
+.cat-card.hidden{display:none}
+.cat-card:hover{background:var(--warm-white)}
+.cat-card:hover .cat-img-inner{transform:scale(1.05)}
+.cat-img{
+  aspect-ratio:1;
+  background:linear-gradient(160deg,#f0e8dc,#e4d5c5);
+  display:flex;align-items:center;justify-content:center;
+  font-size:52px;overflow:hidden;
+  transition:transform 0.5s;
+}
+.cat-info{padding:24px;flex:1;display:flex;flex-direction:column;gap:8px}
+.cat-tag{
+  font-size:10px;letter-spacing:0.2em;
+  color:var(--gold);text-transform:uppercase;
+}
+.cat-name{font-size:14px;font-weight:500;line-height:1.4}
+.cat-desc{font-size:12px;color:var(--muted);line-height:1.7;flex:1;font-weight:300}
+.cat-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;color:var(--gold);font-weight:600;
+  margin-top:8px;
+}
+@media(max-width:900px){
+  .catalog{padding:70px 24px}
+  .cat-grid{grid-template-columns:1fr 1fr}
+  .cat-filters{gap:8px}
+  .cat-btn{font-size:10px;padding:8px 14px}
+}
+@media(max-width:500px){
+  .cat-grid{grid-template-columns:1fr}
+}
+
 /* SCROLL ANIMATIONS */
 .reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -626,7 +684,8 @@ footer{
 <nav>
   <div class="nav-logo">PRO <span>SALON</span></div>
   <ul class="nav-links">
-    <li><a href="#advantages">Продукция</a></li>
+    <li><a href="#advantages">О нас</a></li>
+    <li><a href="#catalog">Каталог</a></li>
     <li><a href="#process">Как заказать</a></li>
     <li><a href="#location">Магазин</a></li>
     <li><a href="#faq">FAQ</a></li>
@@ -797,6 +856,612 @@ footer{
 
 
 
+<!-- КАТАЛОГ ТОВАРОВ -->
+<section class="catalog" id="catalog">
+  <div class="section-header reveal">
+    <span class="section-label">Всё в наличии</span>
+    <h2>Каталог <em>товаров</em></h2>
+  </div>
+
+  <!-- ФИЛЬТРЫ -->
+  <div class="cat-filters reveal">
+    <button class="cat-btn active" data-cat="all">Все</button>
+    <button class="cat-btn" data-cat="hair">Волосы</button>
+    <button class="cat-btn" data-cat="nails">Маникюр</button>
+    <button class="cat-btn" data-cat="lash">Ресницы & Брови</button>
+    <button class="cat-btn" data-cat="depil">Депиляция</button>
+    <button class="cat-btn" data-cat="care">Уход</button>
+    <button class="cat-btn" data-cat="equip">Оборудование</button>
+    <button class="cat-btn" data-cat="parfum">Парфюмерия</button>
+  </div>
+
+  <!-- СЕТКА ТОВАРОВ -->
+  <div class="cat-grid" id="catGrid">
+
+    <!-- ВОЛОСЫ -->
+    <div class="cat-card reveal" data-cat="hair">
+      <div class="cat-img">💆</div>
+      <div class="cat-info">
+        <div class="cat-tag">Волосы</div>
+        <div class="cat-name">Eco Aloe — Шампунь женский</div>
+        <div class="cat-desc">Корейский шампунь с алоэ вера. Питает, увлажняет, укрепляет. Предотвращает выпадение. 760 мл.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="hair">
+      <div class="cat-img">💆</div>
+      <div class="cat-info">
+        <div class="cat-tag">Волосы</div>
+        <div class="cat-name">MyMuse — Шампунь бессульфатный</div>
+        <div class="cat-desc">Укрепляющий шампунь с кератином и маслом макадамии. Увлажнение и блеск. 1000 мл.</div>
+        <div class="cat-price">120 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="hair">
+      <div class="cat-img">💆</div>
+      <div class="cat-info">
+        <div class="cat-tag">Волосы</div>
+        <div class="cat-name">MyMuse — Кондиционер</div>
+        <div class="cat-desc">Укрепляющий бальзам с кератином, витамином E и молочными протеинами. 400 мл.</div>
+        <div class="cat-price">48 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="hair">
+      <div class="cat-img">🌹</div>
+      <div class="cat-info">
+        <div class="cat-tag">Волосы</div>
+        <div class="cat-name">AOGU — Smooth & Shiny Shampoo</div>
+        <div class="cat-desc">Натуральный цветочный шампунь для гладкости и блеска. Аромат розы.</div>
+        <div class="cat-price">110 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="hair">
+      <div class="cat-img">🎨</div>
+      <div class="cat-info">
+        <div class="cat-tag">Волосы</div>
+        <div class="cat-name">Morfose — Oxydant Cream 6%</div>
+        <div class="cat-desc">Профессиональный оксидант 20 vol для окрашивания волос. Равномерное раскрытие цвета.</div>
+        <div class="cat-price">50 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="hair">
+      <div class="cat-img">⚡</div>
+      <div class="cat-info">
+        <div class="cat-tag">Волосы</div>
+        <div class="cat-name">Morfose — Bleaching Powder</div>
+        <div class="cat-desc">Профессиональный осветляющий порошок. Минимальное повреждение, максимальный результат.</div>
+        <div class="cat-price">150 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="hair">
+      <div class="cat-img">✂️</div>
+      <div class="cat-info">
+        <div class="cat-tag">Волосы</div>
+        <div class="cat-name">TIGI Bed Head — Hair Wax Stick</div>
+        <div class="cat-desc">Воск-стик для укладки. Фиксирует, моделирует, придаёт блеск. 2.7 oz.</div>
+        <div class="cat-price">54 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="hair">
+      <div class="cat-img">🟠</div>
+      <div class="cat-info">
+        <div class="cat-tag">Волосы · Schwarzkopf</div>
+        <div class="cat-name">OSiS+ Thrill — Elastic Fiber Gum</div>
+        <div class="cat-desc">Эластичная волокнистая паста для текстурирования на влажных и сухих волосах. 100 мл.</div>
+        <div class="cat-price">220 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="hair">
+      <div class="cat-img">🟠</div>
+      <div class="cat-info">
+        <div class="cat-tag">Волосы · Schwarzkopf</div>
+        <div class="cat-name">OSiS+ Flexwax — Strong Cream Wax</div>
+        <div class="cat-desc">Крем-воск сильной фиксации для сухих волос. Пластичная укладка без жёсткости.</div>
+        <div class="cat-price">210 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="hair">
+      <div class="cat-img">🟠</div>
+      <div class="cat-info">
+        <div class="cat-tag">Волосы · Schwarzkopf</div>
+        <div class="cat-name">OSiS+ Volume Up — Volume Booster Spray</div>
+        <div class="cat-desc">Спрей-бустер объёма для сухих волос. 300 мл.</div>
+        <div class="cat-price">210 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="hair">
+      <div class="cat-img">💨</div>
+      <div class="cat-info">
+        <div class="cat-tag">Волосы · Schwarzkopf</div>
+        <div class="cat-name">OSiS+ Elastic — Лак гибкой фиксации</div>
+        <div class="cat-desc">Не склеивает, сохраняет естественное движение волос. 500 мл.</div>
+        <div class="cat-price">210 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="hair">
+      <div class="cat-img">💨</div>
+      <div class="cat-info">
+        <div class="cat-tag">Волосы</div>
+        <div class="cat-name">Professionnelle — Laque Super Strong Hold</div>
+        <div class="cat-desc">Лак для волос сверхсильной фиксации. 500 мл.</div>
+        <div class="cat-price">145 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="hair">
+      <div class="cat-img">💨</div>
+      <div class="cat-info">
+        <div class="cat-tag">Волосы · Schwarzkopf</div>
+        <div class="cat-name">Silhouette — Hairspray Super Hold</div>
+        <div class="cat-desc">Лак невидимой фиксации Pure Formula. Не оставляет следов. 500 мл.</div>
+        <div class="cat-price">150 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="hair">
+      <div class="cat-img">🔴</div>
+      <div class="cat-info">
+        <div class="cat-tag">Волосы · Farcom</div>
+        <div class="cat-name">Expertia — Revival & Shine Shampoo</div>
+        <div class="cat-desc">Восстанавливающий шампунь для окрашенных и повреждённых волос. Аминокислоты кератина.</div>
+        <div class="cat-price">240 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="hair">
+      <div class="cat-img">🟣</div>
+      <div class="cat-info">
+        <div class="cat-tag">Волосы · Farcom</div>
+        <div class="cat-name">SERI — Color Shield Shampoo</div>
+        <div class="cat-desc">Бессульфатный шампунь для защиты цвета. UV-Keraplex. Для окрашенных волос. 1000 мл.</div>
+        <div class="cat-price">240 000 сум</div>
+      </div>
+    </div>
+
+    <!-- МАНИКЮР -->
+    <div class="cat-card reveal" data-cat="nails">
+      <div class="cat-img">💅</div>
+      <div class="cat-info">
+        <div class="cat-tag">Маникюр · LIVSI</div>
+        <div class="cat-name">Cuticle Oil — Масло для кутикулы</div>
+        <div class="cat-desc">Минеральное масло для смягчения кутикулы. Ароматы: персик и виноград. 30 мл.</div>
+        <div class="cat-price">45 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="nails">
+      <div class="cat-img">💅</div>
+      <div class="cat-info">
+        <div class="cat-tag">Маникюр · LIVSI</div>
+        <div class="cat-name">Monarda Oil — Масло монарды</div>
+        <div class="cat-desc">100% эфирное масло монарды. Витамины A и E. Применяется при онихолозисе. 30 мл.</div>
+        <div class="cat-price">102 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="nails">
+      <div class="cat-img">💅</div>
+      <div class="cat-info">
+        <div class="cat-tag">Маникюр · LIVSI</div>
+        <div class="cat-name">Cuticle Remover Гель</div>
+        <div class="cat-desc">Профессиональный гель для удаления кутикулы. Мочевина в составе. 30 мл.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="nails">
+      <div class="cat-img">💅</div>
+      <div class="cat-info">
+        <div class="cat-tag">Маникюр · VINIMAY</div>
+        <div class="cat-name">Top Coat Disco — Зеркальный финиш</div>
+        <div class="cat-desc">Топ без липкого слоя. Mirror-Glass Finish. UV/LED Soak-Off. 15 мл.</div>
+        <div class="cat-price">42 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="nails">
+      <div class="cat-img">💅</div>
+      <div class="cat-info">
+        <div class="cat-tag">Маникюр · VINIMAY</div>
+        <div class="cat-name">Top Coat Matte — Матовый финиш</div>
+        <div class="cat-desc">Матовый топ без липкого слоя. UV/LED Soak-Off. Non-Cleansing. 15 мл.</div>
+        <div class="cat-price">42 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="nails">
+      <div class="cat-img">💅</div>
+      <div class="cat-info">
+        <div class="cat-tag">Маникюр · VINIMAY</div>
+        <div class="cat-name">Builder Gel — Строительный гель</div>
+        <div class="cat-desc">Гель для наращивания ногтей. Три оттенка: Shiny Flamingo, Clear, Light Pink. LED/UV. 56 г.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="nails">
+      <div class="cat-img">🌸</div>
+      <div class="cat-info">
+        <div class="cat-tag">Маникюр · LIVSI</div>
+        <div class="cat-name">Парафин для рук и ног</div>
+        <div class="cat-desc">Косметический парафин в пакетах. 4 аромата: персик, цитрус, лаванда, клубника. Питает и смягчает.</div>
+        <div class="cat-price">42 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="nails">
+      <div class="cat-img">🦶</div>
+      <div class="cat-info">
+        <div class="cat-tag">Маникюр · LIVSI</div>
+        <div class="cat-name">Гель для ног кератолический</div>
+        <div class="cat-desc">Средство для удаления натоптышей. Urea 5%. Профессиональное использование.</div>
+        <div class="cat-price">72 000 — 168 000 сум</div>
+      </div>
+    </div>
+
+    <!-- РЕСНИЦЫ И БРОВИ -->
+    <div class="cat-card reveal" data-cat="lash">
+      <div class="cat-img">👁️</div>
+      <div class="cat-info">
+        <div class="cat-tag">Ресницы · NAGARAKU</div>
+        <div class="cat-name">3D W Eyelash — Ресницы для наращивания</div>
+        <div class="cat-desc">Широкий выбор: изгибы C/D, толщины 0.07–0.10, длины 8–14 мм и MIX. Для классики и объёма.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="lash">
+      <div class="cat-img">👁️</div>
+      <div class="cat-info">
+        <div class="cat-tag">Ресницы · LOVELY</div>
+        <div class="cat-name">Клей Cleopatra PRO — для ресниц</div>
+        <div class="cat-desc">Профессиональный клей для наращивания. Золотой флакон. 5 мл.</div>
+        <div class="cat-price">168 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="lash">
+      <div class="cat-img">👁️</div>
+      <div class="cat-info">
+        <div class="cat-tag">Ресницы · LOVELY</div>
+        <div class="cat-name">Клей Focus PRO — для ресниц</div>
+        <div class="cat-desc">Профессиональный клей для наращивания. 6 мл.</div>
+        <div class="cat-price">168 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="lash">
+      <div class="cat-img">👁️</div>
+      <div class="cat-info">
+        <div class="cat-tag">Ресницы · BARBARA</div>
+        <div class="cat-name">Клей Exclusive — для ресниц</div>
+        <div class="cat-desc">Премиальный клей для наращивания ресниц. 5 мл.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="lash">
+      <div class="cat-img">👁️</div>
+      <div class="cat-info">
+        <div class="cat-tag">Ресницы · BARBARA</div>
+        <div class="cat-name">Клей Upgrade — для ресниц</div>
+        <div class="cat-desc">Премиальный клей для наращивания ресниц. 5 мл.</div>
+        <div class="cat-price">132 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="lash">
+      <div class="cat-img">✨</div>
+      <div class="cat-info">
+        <div class="cat-tag">Ресницы · IC Factory</div>
+        <div class="cat-name">Lash Lamination Professional Set</div>
+        <div class="cat-desc">Набор для ламинирования ресниц. Volume Lift, Fixer, Fixing Glue, Nourishing Essence + бигуди.</div>
+        <div class="cat-price">445 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="lash">
+      <div class="cat-img">🎨</div>
+      <div class="cat-info">
+        <div class="cat-tag">Брови · BRONSUN</div>
+        <div class="cat-name">Eyebrow Bleaching Kit</div>
+        <div class="cat-desc">Профессиональный набор для осветления бровей. Для мастеров-бровистов.</div>
+        <div class="cat-price">156 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="lash">
+      <div class="cat-img">🎨</div>
+      <div class="cat-info">
+        <div class="cat-tag">Брови · BRONSUN</div>
+        <div class="cat-name">Dye Gel & Dye Cream — Краска для бровей</div>
+        <div class="cat-desc">Гель и крем для окрашивания бровей и ресниц. Оттенки: Deep Black, Blue Black, Light Brown. 15 мл.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="lash">
+      <div class="cat-img">🎨</div>
+      <div class="cat-info">
+        <div class="cat-tag">Брови · BRONSUN</div>
+        <div class="cat-name">Cream Developer 3%</div>
+        <div class="cat-desc">Оксидант-крем 3% для окрашивания бровей и ресниц. Для профессионального использования.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="lash">
+      <div class="cat-img">👁️</div>
+      <div class="cat-info">
+        <div class="cat-tag">Ресницы · JieShuYa</div>
+        <div class="cat-name">Lash Cleanser — Пенный очиститель</div>
+        <div class="cat-desc">3 в 1: очищение ресниц, снятие макияжа, умывание. 100 мл.</div>
+        <div class="cat-price">90 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="lash">
+      <div class="cat-img">💉</div>
+      <div class="cat-info">
+        <div class="cat-tag">Татуаж · AS Company</div>
+        <div class="cat-name">Ice Strong Gel — Фиксирующий гель</div>
+        <div class="cat-desc">Усиленный фиксирующий гель для перманентного макияжа. 15 мл.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="lash">
+      <div class="cat-img">💉</div>
+      <div class="cat-info">
+        <div class="cat-tag">Татуаж · AS Company</div>
+        <div class="cat-name">Ice Gel — Охлаждающий гель для губ</div>
+        <div class="cat-desc">Охлаждающий гель для губ при перманентном макияже. 15 мл.</div>
+        <div class="cat-price">115 000 сум</div>
+      </div>
+    </div>
+
+    <!-- ДЕПИЛЯЦИЯ -->
+    <div class="cat-card reveal" data-cat="depil">
+      <div class="cat-img">🪷</div>
+      <div class="cat-info">
+        <div class="cat-tag">Депиляция · RICA</div>
+        <div class="cat-name">Воск баночный — Aloe Vera</div>
+        <div class="cat-desc">Натуральный холодный воск с алоэ вера. Для чувствительной кожи.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="depil">
+      <div class="cat-img">🍌</div>
+      <div class="cat-info">
+        <div class="cat-tag">Депиляция · RICA</div>
+        <div class="cat-name">Воск баночный — Banana</div>
+        <div class="cat-desc">Натуральный воск с экстрактом банана. Мягкое удаление волос.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="depil">
+      <div class="cat-img">✨</div>
+      <div class="cat-info">
+        <div class="cat-tag">Депиляция · RICA</div>
+        <div class="cat-name">Воск баночный — Trasparente</div>
+        <div class="cat-desc">Прозрачный воск для депиляции. Подходит для всех типов кожи.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="depil">
+      <div class="cat-img">🌿</div>
+      <div class="cat-info">
+        <div class="cat-tag">Депиляция · Depilflax</div>
+        <div class="cat-name">Воск гранулированный Oro 5AB</div>
+        <div class="cat-desc">Низкоплавкий гранулированный воск для депиляции. Профессиональный.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="depil">
+      <div class="cat-img">🧻</div>
+      <div class="cat-info">
+        <div class="cat-tag">Депиляция · RICA</div>
+        <div class="cat-name">Non-Woven Roll — Полоски для депиляции</div>
+        <div class="cat-desc">Нетканые полоски для депиляции в рулоне. Высокое качество.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <!-- УХОД -->
+    <div class="cat-card reveal" data-cat="care">
+      <div class="cat-img">🧴</div>
+      <div class="cat-info">
+        <div class="cat-tag">Уход · Clean Face</div>
+        <div class="cat-name">Пенка-мыло для лица</div>
+        <div class="cat-desc">Пенка для умывания нормальной кожи. Лёгкая текстура, деликатное очищение.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="care">
+      <div class="cat-img">🧼</div>
+      <div class="cat-info">
+        <div class="cat-tag">Уход</div>
+        <div class="cat-name">Натуральное мыло — наборы</div>
+        <div class="cat-desc">Ароматное мыло в подарочных коробках. Несколько видов и ароматов.</div>
+        <div class="cat-price">от 18 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="care">
+      <div class="cat-img">🔵</div>
+      <div class="cat-info">
+        <div class="cat-tag">Уход · LIVSI</div>
+        <div class="cat-name">Instrum Dez Pro — Дезинфектор</div>
+        <div class="cat-desc">Концентрированное средство для дезинфекции инструментов. Антимикробная активность.</div>
+        <div class="cat-price">60 000 — 174 000 сум</div>
+      </div>
+    </div>
+
+    <!-- ОБОРУДОВАНИЕ -->
+    <div class="cat-card reveal" data-cat="equip">
+      <div class="cat-img">💡</div>
+      <div class="cat-info">
+        <div class="cat-tag">Оборудование</div>
+        <div class="cat-name">Лампа-дуга для наращивания ресниц</div>
+        <div class="cat-desc">Профессиональная арочная лампа на стойке. Мягкий равномерный свет. Для лэш-мастеров.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="equip">
+      <div class="cat-img">💡</div>
+      <div class="cat-info">
+        <div class="cat-tag">Оборудование</div>
+        <div class="cat-name">Clip Lamp — Настольная лампа</div>
+        <div class="cat-desc">Лампа на прищепке с гибким кронштейном. Регулируется под любой угол.</div>
+        <div class="cat-price">115 000 сум</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="equip">
+      <div class="cat-img">🔥</div>
+      <div class="cat-info">
+        <div class="cat-tag">Оборудование</div>
+        <div class="cat-name">Wax Heater — Воскоплав</div>
+        <div class="cat-desc">Профессиональный нагреватель воска. Регулировка температуры ON/MED/HI.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="equip">
+      <div class="cat-img">💅</div>
+      <div class="cat-info">
+        <div class="cat-tag">Оборудование</div>
+        <div class="cat-name">UV/LED Лампа для маникюра</div>
+        <div class="cat-desc">Профессиональная лампа в хромовом корпусе. Таймер 10/30/60/90 сек. Для всех гель-лаков.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="equip">
+      <div class="cat-img">💨</div>
+      <div class="cat-info">
+        <div class="cat-tag">Оборудование</div>
+        <div class="cat-name">Вытяжка для маникюра</div>
+        <div class="cat-desc">Настольная вытяжка для удаления пыли при опиловке ногтей. Мощный вентилятор.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="equip">
+      <div class="cat-img">🖊️</div>
+      <div class="cat-info">
+        <div class="cat-tag">Оборудование · MAST</div>
+        <div class="cat-name">Машинка для татуажа (Pen)</div>
+        <div class="cat-desc">Профессиональные pen-машинки для перманентного макияжа. Красный, чёрный, розовое золото.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="equip">
+      <div class="cat-img">🖊️</div>
+      <div class="cat-info">
+        <div class="cat-tag">Оборудование · MAST PRO</div>
+        <div class="cat-name">Картриджные иглы Pro Needle Pins</div>
+        <div class="cat-desc">Профессиональные стерильные картриджи для перманентного макияжа и татуажа.</div>
+        <div class="cat-price">190 000 сум</div>
+      </div>
+    </div>
+
+    <!-- ПАРФЮМЕРИЯ -->
+    <div class="cat-card reveal" data-cat="parfum">
+      <div class="cat-img">🌸</div>
+      <div class="cat-info">
+        <div class="cat-tag">Парфюмерия · Victoria's Secret</div>
+        <div class="cat-name">Bombshell Intense — Mist & Lotion</div>
+        <div class="cat-desc">Насыщенный цветочный аромат. Парфюмированный спрей + лосьон для тела. 250 мл каждый.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="parfum">
+      <div class="cat-img">🖤</div>
+      <div class="cat-info">
+        <div class="cat-tag">Парфюмерия · Victoria's Secret</div>
+        <div class="cat-name">Tease Candy Noir — Mist & Lotion</div>
+        <div class="cat-desc">Тёмный, чувственный аромат. Парфюмированный спрей + лосьон для тела. 250 мл каждый.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="parfum">
+      <div class="cat-img">💜</div>
+      <div class="cat-info">
+        <div class="cat-tag">Парфюмерия · Victoria's Secret</div>
+        <div class="cat-name">Very Sexy & Very Sexy Night — Lotion</div>
+        <div class="cat-desc">Парфюмированный лосьон. Два аромата: дневной и ночной. 250 мл каждый.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="parfum">
+      <div class="cat-img">🩶</div>
+      <div class="cat-info">
+        <div class="cat-tag">Парфюмерия · Victoria's Secret</div>
+        <div class="cat-name">Heavenly Dream Angel & Bare Sueded Vanilla</div>
+        <div class="cat-desc">Нежные лосьоны. Dream Angel — воздушный, Bare — ванильный аромат. 250 мл.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="parfum">
+      <div class="cat-img">🩵</div>
+      <div class="cat-info">
+        <div class="cat-tag">Парфюмерия · Victoria's Secret</div>
+        <div class="cat-name">Bombshell Escape & Tease Dreamer</div>
+        <div class="cat-desc">Лосьон и спрей. Свежие летние ароматы. 250 мл каждый.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="parfum">
+      <div class="cat-img">🥇</div>
+      <div class="cat-info">
+        <div class="cat-tag">Парфюмерия · Victoria's Secret</div>
+        <div class="cat-name">Cloud Body Cream — Heavenly & Day Dream</div>
+        <div class="cat-desc">Крем-суфле для тела. Два аромата: Heavenly (золото) и Day Dream (белый). 198 г.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+    <div class="cat-card reveal" data-cat="parfum">
+      <div class="cat-img">💜</div>
+      <div class="cat-info">
+        <div class="cat-tag">Парфюмерия · Bath & Body Works</div>
+        <div class="cat-name">A Thousand Wishes — набор</div>
+        <div class="cat-desc">Лосьон для тела + гель для душа + парфюмированный спрей. Цветочно-мускусный аромат.</div>
+        <div class="cat-price">Уточнить цену</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;margin-top:50px;" class="reveal">
+    <a href="https://t.me/prosalonchirchik" class="btn-gold">Заказать через Telegram →</a>
+  </div>
+</section>
+
 <!-- ЛОКАЦИЯ -->
 <section class="location" id="location">
   <div class="reveal-left">
@@ -961,7 +1626,21 @@ const cio=new IntersectionObserver(entries=>{
 },{threshold:0.5});
 document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
 
-// FAQ
+// Catalog filter
+document.querySelectorAll('.cat-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat=btn.dataset.cat;
+    document.querySelectorAll('.cat-card').forEach(card=>{
+      if(cat==='all'||card.dataset.cat===cat){
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  });
+});
 document.querySelectorAll('.faq-item').forEach(item=>{
   item.querySelector('.faq-q').addEventListener('click',()=>{
     const isOpen=item.classList.contains('active');
