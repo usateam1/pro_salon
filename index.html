@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Salon — Профессиональная бьюти продукция</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#c9a96e;
+  --gold-light:#e8d5b0;
+  --gold-dark:#a07840;
+  --cream:#faf8f5;
+  --warm-white:#f5f2ee;
+  --dark:#1a1714;
+  --dark-2:#2d2926;
+  --muted:#7a7470;
+  --border:rgba(201,169,110,0.2);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Jost',sans-serif;
+  background:var(--cream);
+  color:var(--dark);
+  overflow-x:hidden;
+  cursor:none;
+}
+.cursor{
+  position:fixed;width:8px;height:8px;
+  background:var(--gold);border-radius:50%;
+  pointer-events:none;z-index:99999;
+  transform:translate(-50%,-50%);
+  transition:transform 0.1s ease;
+}
+.cursor-ring{
+  position:fixed;width:36px;height:36px;
+  border:1px solid rgba(201,169,110,0.5);
+  border-radius:50%;pointer-events:none;z-index:99998;
+  transform:translate(-50%,-50%);
+  transition:transform 0.15s ease,width 0.3s,height 0.3s,border-color 0.3s;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;width:100%;z-index:1000;
+  padding:22px 60px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(250,248,245,0.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  animation:fadeDown 0.8s ease both;
+}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;font-weight:600;
+  letter-spacing:0.15em;color:var(--dark);
+}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{
+  font-size:12px;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;
+  transition:color 0.3s;font-weight:500;
+}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  padding:12px 28px;border:1px solid var(--gold);
+  color:var(--gold);background:transparent;
+  text-decoration:none;transition:all 0.4s;font-weight:500;
+}
+.nav-cta:hover{background:var(--gold);color:var(--cream)}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  position:relative;overflow:hidden;
+  padding-top:80px;
+}
+.hero-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 60px 80px 80px;
+  position:relative;z-index:2;
+  animation:fadeLeft 1s ease 0.2s both;
+}
+@keyframes fadeLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
+.hero-eyebrow{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:40px;
+}
+.eyebrow-line{width:40px;height:1px;background:var(--gold)}
+.eyebrow-text{
+  font-size:11px;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--gold);font-weight:500;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--border);padding:8px 16px;
+  border-radius:2px;margin-bottom:40px;
+  font-size:11px;letter-spacing:0.15em;color:var(--muted);
+}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(201,169,110,0.4)}50%{opacity:0.7;box-shadow:0 0 0 8px transparent}}
+h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:72px;line-height:1.05;
+  font-weight:300;margin-bottom:30px;
+  color:var(--dark);
+}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{
+  font-size:15px;line-height:1.8;color:var(--muted);
+  max-width:420px;margin-bottom:50px;font-weight:300;
+}
+.hero-benefits{margin-bottom:50px;display:flex;flex-direction:column;gap:14px}
+.hb-item{display:flex;align-items:center;gap:14px;font-size:13px;letter-spacing:0.05em}
+.hb-check{
+  width:20px;height:20px;border:1px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;color:var(--gold);font-size:10px;
+}
+.hero-actions{display:flex;gap:20px;align-items:center;margin-bottom:50px;flex-wrap:wrap}
+.btn-gold{
+  background:var(--gold);color:var(--cream);
+  padding:16px 36px;border:none;
+  font-family:'Jost',sans-serif;font-size:11px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  text-decoration:none;transition:all 0.4s;font-weight:500;
+  display:inline-flex;align-items:center;gap:10px;
+}
+.btn-gold:hover{background:var(--gold-dark);transform:translateY(-2px)}
+.btn-outline{
+  border:1px solid var(--dark);color:var(--dark);
+  padding:16px 36px;
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  text-decoration:none;transition:all 0.4s;font-weight:500;
+}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-social-proof{display:flex;align-items:center;gap:16px}
+.avatars{display:flex}
+.av{
+  width:34px;height:34px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold-dark),var(--gold));
+  border:2px solid var(--cream);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--cream);font-size:11px;font-weight:600;
+  margin-left:-10px;
+}
+.av:first-child{margin-left:0}
+.sp-text{font-size:12px;color:var(--muted);line-height:1.5}
+.sp-text strong{color:var(--dark);display:block;font-size:13px}
+
+/* HERO RIGHT */
+.hero-right{
+  position:relative;overflow:hidden;
+  animation:fadeRight 1s ease 0.4s both;
+}
+@keyframes fadeRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+.hero-image-wrap{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-photo{
+  width:100%;height:100%;object-fit:cover;
+  background:linear-gradient(160deg,#f0e8dc 0%,#e8d5c4 40%,#d4c0b0 100%);
+  display:flex;align-items:center;justify-content:center;
+  font-size:120px;opacity:0.4;
+  position:relative;
+}
+.hero-photo::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(250,248,245,0.6) 0%,transparent 50%);
+}
+.hero-overlay-card{
+  position:absolute;bottom:60px;left:-30px;
+  background:rgba(250,248,245,0.95);
+  backdrop-filter:blur(20px);
+  padding:24px 28px;
+  border:1px solid var(--border);
+  min-width:200px;
+  animation:slideCard 1s ease 0.8s both;
+  z-index:3;
+}
+@keyframes slideCard{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+.card-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.card-val{font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--gold);font-weight:600}
+.card-sub{font-size:11px;color:var(--muted);margin-top:4px}
+.hero-bg-text{
+  position:absolute;bottom:-20px;right:-20px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:200px;font-weight:600;
+  color:rgba(201,169,110,0.04);
+  line-height:1;user-select:none;
+  pointer-events:none;
+}
+
+/* TICKER */
+.ticker{
+  background:var(--dark);padding:18px 0;
+  overflow:hidden;position:relative;
+}
+.ticker-inner{
+  display:flex;gap:0;
+  animation:ticker 25s linear infinite;
+  white-space:nowrap;
+}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ticker-item{
+  font-size:11px;letter-spacing:0.25em;text-transform:uppercase;
+  color:rgba(255,255,255,0.5);padding:0 40px;
+  display:flex;align-items:center;gap:40px;
+}
+.ticker-dot{color:var(--gold);font-size:18px}
+
+/* ABOUT */
+.about{
+  padding:120px 80px;
+  display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;
+}
+.about-label{
+  font-size:10px;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px;
+}
+.about-label::before{content:'';width:30px;height:1px;background:var(--gold)}
+h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:50px;font-weight:300;line-height:1.15;
+  margin-bottom:30px;
+}
+h2 em{font-style:italic;color:var(--gold)}
+.about-text{font-size:14px;line-height:1.9;color:var(--muted);font-weight:300;margin-bottom:40px}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:30px;border-top:1px solid var(--border);padding-top:40px}
+.astat{text-align:center}
+.astat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:42px;color:var(--gold);font-weight:300;margin-bottom:4px;
+}
+.astat-label{font-size:11px;color:var(--muted);letter-spacing:0.1em}
+.about-visual{position:relative}
+.about-img{
+  width:100%;aspect-ratio:4/5;
+  background:linear-gradient(160deg,#ede6d8 0%,#d9c9b5 100%);
+  display:flex;align-items:center;justify-content:center;
+  font-size:80px;color:rgba(201,169,110,0.2);
+  position:relative;overflow:hidden;
+}
+.about-img::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:40%;
+  background:linear-gradient(to top,rgba(201,169,110,0.15),transparent);
+}
+.about-accent{
+  position:absolute;top:-20px;right:-20px;
+  width:120px;height:120px;
+  border:1px solid var(--gold);opacity:0.3;
+}
+.about-accent2{
+  position:absolute;bottom:-20px;left:-20px;
+  width:80px;height:80px;
+  border:1px solid var(--gold);opacity:0.2;
+}
+
+/* ADVANTAGES */
+.advantages{
+  padding:100px 80px;
+  background:var(--warm-white);
+}
+.section-header{text-align:center;margin-bottom:70px}
+.section-label{
+  font-size:10px;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;display:block;
+}
+.adv-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  background:var(--border);border:1px solid var(--border);
+}
+.adv-card{
+  background:var(--warm-white);
+  padding:50px 40px;
+  transition:background 0.4s;
+  position:relative;overflow:hidden;
+}
+.adv-card::before{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  transform:scaleX(0);transition:transform 0.4s;
+}
+.adv-card:hover{background:var(--cream)}
+.adv-card:hover::before{transform:scaleX(1)}
+.adv-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px;color:rgba(201,169,110,0.15);
+  font-weight:600;line-height:1;margin-bottom:20px;
+}
+.adv-icon{
+  width:40px;height:40px;margin-bottom:24px;
+  border:1px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:16px;
+}
+.adv-title{font-size:17px;font-weight:500;margin-bottom:14px;letter-spacing:0.03em}
+.adv-text{font-size:13px;color:var(--muted);line-height:1.8;font-weight:300}
+
+/* PRODUCTS / NEW SECTION */
+.products{padding:100px 80px}
+.products-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:2px;
+  background:var(--border);border:1px solid var(--border);
+  margin-top:60px;
+}
+.prod-card{
+  background:var(--cream);
+  overflow:hidden;transition:all 0.4s;
+  cursor:none;
+}
+.prod-card:hover .prod-img{transform:scale(1.05)}
+.prod-card:hover{background:var(--warm-white)}
+.prod-img{
+  aspect-ratio:1;
+  background:linear-gradient(160deg,#ede6d8,#d9c9b5);
+  display:flex;align-items:center;justify-content:center;
+  font-size:50px;color:rgba(201,169,110,0.25);
+  transition:transform 0.5s;overflow:hidden;
+}
+.prod-info{padding:24px}
+.prod-cat{font-size:10px;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+.prod-name{font-size:14px;font-weight:500;margin-bottom:8px}
+.prod-brand{font-size:12px;color:var(--muted)}
+
+/* METRICS */
+.metrics{
+  padding:100px 80px;
+  background:var(--dark);
+  position:relative;overflow:hidden;
+}
+.metrics::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 30% 50%,rgba(201,169,110,0.06) 0%,transparent 60%),
+             radial-gradient(ellipse at 70% 50%,rgba(201,169,110,0.04) 0%,transparent 60%);
+}
+.metrics-label{
+  text-align:center;font-size:10px;letter-spacing:0.3em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:70px;
+}
+.metrics-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  position:relative;z-index:1;
+}
+.metric{
+  text-align:center;padding:40px;
+  border-right:1px solid rgba(201,169,110,0.1);
+}
+.metric:last-child{border-right:none}
+.metric-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:64px;font-weight:300;color:var(--gold);
+  line-height:1;margin-bottom:16px;
+}
+.metric-plus{font-size:36px}
+.metric-name{font-size:11px;letter-spacing:0.15em;color:rgba(255,255,255,0.4);text-transform:uppercase}
+
+/* PROCESS */
+.process{padding:100px 80px;background:var(--warm-white)}
+.process-steps{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:60px;margin-top:70px;
+  position:relative;
+}
+.process-steps::before{
+  content:'';position:absolute;
+  top:24px;left:10%;right:10%;
+  height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.ps{text-align:center;position:relative;z-index:1}
+.ps-num{
+  width:48px;height:48px;
+  border:1px solid var(--gold);
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;color:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 30px;
+  background:var(--warm-white);
+}
+.ps-title{font-size:17px;font-weight:500;margin-bottom:14px;letter-spacing:0.03em}
+.ps-text{font-size:13px;color:var(--muted);line-height:1.8;font-weight:300}
+
+/* TESTIMONIALS / NEW SECTION */
+.testimonials{
+  padding:100px 80px;background:var(--dark);
+  position:relative;overflow:hidden;
+}
+.testimonials::before{
+  content:'BEAUTY';
+  position:absolute;right:-40px;top:50%;transform:translateY(-50%);
+  font-family:'Cormorant Garamond',serif;
+  font-size:250px;font-weight:600;
+  color:rgba(201,169,110,0.03);
+  line-height:1;pointer-events:none;
+}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:70px;background:rgba(255,255,255,0.03)}
+.test-card{
+  background:rgba(26,23,20,1);
+  padding:50px 40px;border:1px solid rgba(201,169,110,0.08);
+  transition:border-color 0.4s;
+}
+.test-card:hover{border-color:rgba(201,169,110,0.25)}
+.test-stars{color:var(--gold);font-size:12px;letter-spacing:4px;margin-bottom:24px}
+.test-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-style:italic;
+  color:rgba(255,255,255,0.8);line-height:1.6;margin-bottom:30px;
+}
+.test-author{font-size:11px;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase}
+.test-role{font-size:11px;color:rgba(255,255,255,0.3);margin-top:4px;letter-spacing:0.05em}
+
+/* LOCATION / NEW SECTION */
+.location{
+  padding:100px 80px;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.loc-label{
+  font-size:10px;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px;
+}
+.loc-label::before{content:'';width:30px;height:1px;background:var(--gold)}
+.loc-details{margin-top:50px;display:flex;flex-direction:column;gap:30px}
+.loc-row{display:flex;gap:20px;align-items:flex-start}
+.loc-icon{
+  width:40px;height:40px;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);flex-shrink:0;font-size:14px;
+}
+.loc-info{font-size:13px;line-height:1.8;color:var(--muted)}
+.loc-info strong{color:var(--dark);font-size:14px;font-weight:500;display:block;margin-bottom:4px}
+.loc-map{
+  background:linear-gradient(160deg,#ede6d8,#d9c9b5);
+  aspect-ratio:4/5;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  font-size:60px;color:rgba(201,169,110,0.2);
+}
+.loc-map::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(250,248,245,0) 60%,rgba(250,248,245,0.3));
+}
+.loc-pin{
+  position:absolute;bottom:80px;left:50%;
+  transform:translateX(-50%);
+  background:rgba(250,248,245,0.95);
+  backdrop-filter:blur(10px);
+  padding:14px 20px;border:1px solid var(--border);
+  font-size:12px;font-weight:500;letter-spacing:0.05em;
+  white-space:nowrap;
+  display:flex;align-items:center;gap:8px;
+}
+.loc-pin::before{content:'◆';color:var(--gold);font-size:10px}
+
+/* FAQ */
+.faq{padding:100px 80px;background:var(--warm-white)}
+.faq-wrap{max-width:780px;margin:60px auto 0}
+.faq-item{
+  border-bottom:1px solid var(--border);
+}
+.faq-q{
+  padding:28px 0;
+  display:flex;justify-content:space-between;align-items:center;
+  cursor:none;font-size:15px;font-weight:500;letter-spacing:0.03em;
+  transition:color 0.3s;
+}
+.faq-q:hover{color:var(--gold)}
+.faq-toggle{
+  width:24px;height:24px;border:1px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:16px;flex-shrink:0;
+  transition:transform 0.3s;
+}
+.faq-item.active .faq-toggle{transform:rotate(45deg)}
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;
+  font-size:13px;color:var(--muted);line-height:1.9;font-weight:300;
+}
+.faq-item.active .faq-a{max-height:200px;padding-bottom:28px}
+
+/* CTA */
+.cta{
+  padding:120px 80px;
+  background:var(--dark);
+  text-align:center;position:relative;overflow:hidden;
+}
+.cta::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 100%,rgba(201,169,110,0.1) 0%,transparent 60%);
+}
+.cta-label{
+  font-size:10px;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:30px;display:block;
+}
+.cta h2{color:rgba(255,255,255,0.95);margin-bottom:20px;position:relative;z-index:1}
+.cta-sub{font-size:14px;color:rgba(255,255,255,0.4);margin-bottom:50px;font-weight:300;position:relative;z-index:1}
+.cta-actions{
+  display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+  position:relative;z-index:1;
+}
+.btn-gold-inv{
+  background:var(--gold);color:var(--dark);
+  padding:18px 40px;border:none;
+  font-family:'Jost',sans-serif;font-size:11px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  text-decoration:none;transition:all 0.4s;font-weight:600;
+  display:inline-flex;align-items:center;gap:10px;
+}
+.btn-gold-inv:hover{background:var(--gold-dark);transform:translateY(-2px)}
+.btn-light{
+  border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);
+  padding:18px 40px;
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  text-decoration:none;transition:all 0.4s;font-weight:500;
+}
+.btn-light:hover{border-color:var(--gold);color:var(--gold)}
+.cta-divider{
+  width:1px;height:50px;background:rgba(255,255,255,0.1);
+  align-self:center;
+}
+.cta-form{
+  display:flex;gap:0;max-width:460px;margin:40px auto 0;
+  position:relative;z-index:1;
+}
+.cta-input{
+  flex:1;padding:16px 22px;background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);border-right:none;
+  color:white;font-size:13px;font-family:'Jost',sans-serif;
+  outline:none;
+}
+.cta-input::placeholder{color:rgba(255,255,255,0.3)}
+.cta-input:focus{border-color:var(--gold)}
+.cta-btn{
+  background:var(--gold);color:var(--dark);
+  padding:16px 28px;border:none;
+  font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
+  font-family:'Jost',sans-serif;font-weight:600;
+  cursor:none;transition:background 0.3s;
+}
+.cta-btn:hover{background:var(--gold-dark)}
+
+/* FOOTER */
+footer{
+  background:var(--dark-2);padding:70px 80px 40px;
+  border-top:1px solid rgba(201,169,110,0.1);
+}
+.footer-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;
+  gap:60px;margin-bottom:60px;
+}
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;color:rgba(255,255,255,0.9);
+  margin-bottom:16px;letter-spacing:0.1em;
+}
+.footer-logo span{color:var(--gold)}
+.footer-desc{font-size:13px;color:rgba(255,255,255,0.3);line-height:1.8;font-weight:300;max-width:280px;margin-bottom:30px}
+.social-row{display:flex;gap:12px}
+.soc{
+  width:36px;height:36px;border:1px solid rgba(201,169,110,0.2);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,0.3);font-size:12px;
+  text-decoration:none;transition:all 0.3s;
+}
+.soc:hover{border-color:var(--gold);color:var(--gold)}
+.footer-col h4{
+  font-size:10px;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:24px;
+}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:14px}
+.footer-col a{font-size:13px;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.3s;font-weight:300}
+.footer-col a:hover{color:rgba(255,255,255,0.8)}
+.footer-contact{display:flex;flex-direction:column;gap:20px}
+.fc-item{font-size:13px;color:rgba(255,255,255,0.3);line-height:1.7;font-weight:300}
+.fc-item strong{color:rgba(255,255,255,0.6);font-weight:500;display:block;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px}
+.fc-item a{color:var(--gold);text-decoration:none}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.05);
+  padding-top:30px;display:flex;justify-content:space-between;align-items:center;
+  font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:0.05em;
+}
+
+/* SCROLL ANIMATIONS */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+
+@media(max-width:900px){
+  nav{padding:18px 24px}
+  .nav-links{display:none}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-left{padding:100px 24px 60px}
+  h1{font-size:44px}
+  .hero-right{height:300px}
+  .hero-overlay-card{left:20px;bottom:20px}
+  .about,.location{grid-template-columns:1fr;padding:70px 24px;gap:50px}
+  .advantages,.process,.testimonials,.faq,.products{padding:70px 24px}
+  .metrics{padding:70px 24px}
+  .adv-grid,.products-grid,.test-grid{grid-template-columns:1fr}
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  .metric{border-right:none;border-bottom:1px solid rgba(201,169,110,0.1)}
+  .process-steps{grid-template-columns:1fr}
+  .process-steps::before{display:none}
+  .footer-top{grid-template-columns:1fr;gap:40px}
+  footer{padding:50px 24px 30px}
+  .cta{padding:80px 24px}
+  .cta-actions{flex-direction:column;align-items:center}
+  .cta-divider{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- НАВИГАЦИЯ -->
+<nav>
+  <div class="nav-logo">PRO <span>SALON</span></div>
+  <ul class="nav-links">
+    <li><a href="#advantages">Продукция</a></li>
+    <li><a href="#process">Как заказать</a></li>
+    <li><a href="#location">Магазин</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="tel:+998777417898" class="nav-cta">+998 77 741 78 98</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Chirchiq · Uzbekistan</span>
+    </div>
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Доставка по всему Узбекистану
+    </div>
+    <h1>
+      Профессиональный<br>
+      бьюти <em>магазин</em><br>
+      нового уровня
+    </h1>
+    <p class="hero-sub">
+      Сертифицированная продукция мировых брендов для визажистов, парикмахеров, косметологов и мастеров маникюра.
+    </p>
+    <div class="hero-benefits">
+      <div class="hb-item"><div class="hb-check">✓</div>MAC, NARS, Kydra, L'Oréal Pro и 50+ брендов</div>
+      <div class="hb-item"><div class="hb-check">✓</div>Оптовые цены для салонов и мастеров</div>
+      <div class="hb-item"><div class="hb-check">✓</div>Доставка за 1–2 дня по всему Узбекистану</div>
+    </div>
+    <div class="hero-actions">
+      <a href="https://t.me/prosalonchirchik" class="btn-gold">Написать в Telegram →</a>
+      <a href="#advantages" class="btn-outline">Каталог товаров</a>
+    </div>
+    <div class="hero-social-proof">
+      <div class="avatars">
+        <div class="av">М</div><div class="av">А</div><div class="av">Н</div>
+      </div>
+      <div class="sp-text">
+        <strong>500+ довольных клиентов</strong>
+        Рейтинг 4.9★ — реальные отзывы мастеров
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-image-wrap">
+      <div class="hero-photo">💄</div>
+    </div>
+    <div class="hero-overlay-card">
+      <div class="card-label">Наш рейтинг</div>
+      <div class="card-val">4.9★</div>
+      <div class="card-sub">500+ отзывов</div>
+    </div>
+    <div class="hero-bg-text">PS</div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">MAC <span class="ticker-dot">◆</span> NARS <span class="ticker-dot">◆</span> Bobbi Brown <span class="ticker-dot">◆</span> Kydra <span class="ticker-dot">◆</span> Morfose <span class="ticker-dot">◆</span> Concept <span class="ticker-dot">◆</span> L'Oréal Pro <span class="ticker-dot">◆</span> Matrix <span class="ticker-dot">◆</span> Wella <span class="ticker-dot">◆</span> Schwarzkopf <span class="ticker-dot">◆</span> GKhair <span class="ticker-dot">◆</span> Revlon Pro</span>
+    <span class="ticker-item">MAC <span class="ticker-dot">◆</span> NARS <span class="ticker-dot">◆</span> Bobbi Brown <span class="ticker-dot">◆</span> Kydra <span class="ticker-dot">◆</span> Morfose <span class="ticker-dot">◆</span> Concept <span class="ticker-dot">◆</span> L'Oréal Pro <span class="ticker-dot">◆</span> Matrix <span class="ticker-dot">◆</span> Wella <span class="ticker-dot">◆</span> Schwarzkopf <span class="ticker-dot">◆</span> GKhair <span class="ticker-dot">◆</span> Revlon Pro</span>
+  </div>
+</div>
+
+<!-- О НАС -->
+<section class="about">
+  <div class="reveal-left">
+    <div class="about-label">О нас</div>
+    <h2>Бьюти продукция <em>высшего</em> стандарта</h2>
+    <p class="about-text">Pro Salon — это не просто магазин. Это ваш профессиональный партнёр. Мы тщательно отбираем каждый бренд и каждый продукт, чтобы вы могли работать только с лучшим. Более 5 000 позиций в наличии, консультация эксперта и гарантия оригинальности.</p>
+    <div class="about-stats">
+      <div class="astat"><div class="astat-num" data-count="5000">0</div><div class="astat-label">Товаров в каталоге</div></div>
+      <div class="astat"><div class="astat-num" data-count="50">0</div><div class="astat-label">Брендов-партнёров</div></div>
+      <div class="astat"><div class="astat-num" data-count="500">0</div><div class="astat-label">Клиентов</div></div>
+      <div class="astat"><div class="astat-num" data-count="98">0</div><div class="astat-label">% вовремя</div></div>
+    </div>
+  </div>
+  <div class="about-visual reveal-right">
+    <div class="about-img">🪞</div>
+    <div class="about-accent"></div>
+    <div class="about-accent2"></div>
+  </div>
+</section>
+
+<!-- ПРЕИМУЩЕСТВА -->
+<section class="advantages" id="advantages">
+  <div class="section-header reveal">
+    <span class="section-label">Наши преимущества</span>
+    <h2>Почему выбирают <em>Pro Salon</em></h2>
+  </div>
+  <div class="adv-grid">
+    <div class="adv-card reveal"><div class="adv-num">01</div><div class="adv-icon">✦</div><div class="adv-title">Только оригиналы</div><div class="adv-text">Вся продукция сертифицирована и поставляется напрямую от официальных дистрибьюторов</div></div>
+    <div class="adv-card reveal"><div class="adv-num">02</div><div class="adv-icon">◈</div><div class="adv-title">Оптовые цены</div><div class="adv-text">Специальные условия для салонов, студий и постоянных мастеров. Скидки от объёма</div></div>
+    <div class="adv-card reveal"><div class="adv-num">03</div><div class="adv-icon">⬡</div><div class="adv-title">Быстрая доставка</div><div class="adv-text">1 день по Чирчику, 1–2 дня по Узбекистану. Бесплатно от 100 000 сум</div></div>
+    <div class="adv-card reveal"><div class="adv-num">04</div><div class="adv-icon">◇</div><div class="adv-title">Экспертный подбор</div><div class="adv-text">Наш консультант поможет подобрать идеальный продукт под вашу задачу и клиентов</div></div>
+    <div class="adv-card reveal"><div class="adv-num">05</div><div class="adv-icon">△</div><div class="adv-title">Полный ассортимент</div><div class="adv-text">Макияж, волосы, уход, ногти, оборудование — всё для профессионала в одном месте</div></div>
+    <div class="adv-card reveal"><div class="adv-num">06</div><div class="adv-icon">○</div><div class="adv-title">Гарантия качества</div><div class="adv-text">Возврат и замена в течение 7 дней при обнаружении дефекта</div></div>
+  </div>
+</section>
+
+<!-- КАТЕГОРИИ -->
+<section class="products">
+  <div class="section-header reveal">
+    <span class="section-label">Каталог</span>
+    <h2>Профессиональный <em>ассортимент</em></h2>
+  </div>
+  <div class="products-grid">
+    <div class="prod-card reveal">
+      <div class="prod-img">💄</div>
+      <div class="prod-info">
+        <div class="prod-cat">Профессиональный</div>
+        <div class="prod-name">Макияж & Цвет</div>
+        <div class="prod-brand">MAC · NARS · Bobbi Brown</div>
+      </div>
+    </div>
+    <div class="prod-card reveal">
+      <div class="prod-img">💆</div>
+      <div class="prod-info">
+        <div class="prod-cat">Профессиональный</div>
+        <div class="prod-name">Уход за волосами</div>
+        <div class="prod-brand">Kydra · Matrix · Wella</div>
+      </div>
+    </div>
+    <div class="prod-card reveal">
+      <div class="prod-img">🧴</div>
+      <div class="prod-info">
+        <div class="prod-cat">Профессиональный</div>
+        <div class="prod-name">Уход за кожей</div>
+        <div class="prod-brand">L'Oréal Pro · Concept</div>
+      </div>
+    </div>
+    <div class="prod-card reveal">
+      <div class="prod-img">✂️</div>
+      <div class="prod-info">
+        <div class="prod-cat">Профессиональный</div>
+        <div class="prod-name">Инструменты & Оборудование</div>
+        <div class="prod-brand">Morfose · GKhair</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- МЕТРИКИ -->
+<section class="metrics">
+  <div class="metrics-label reveal">Цифры говорят сами</div>
+  <div class="metrics-grid">
+    <div class="metric reveal"><div class="metric-num"><span class="count" data-count="500">0</span><span class="metric-plus">+</span></div><div class="metric-name">Довольных клиентов</div></div>
+    <div class="metric reveal"><div class="metric-num"><span class="count" data-count="5000">0</span><span class="metric-plus">+</span></div><div class="metric-name">Товаров в каталоге</div></div>
+    <div class="metric reveal"><div class="metric-num"><span class="count" data-count="50">0</span><span class="metric-plus">+</span></div><div class="metric-name">Брендов партнёров</div></div>
+    <div class="metric reveal"><div class="metric-num"><span class="count" data-count="98">0</span><span class="metric-plus">%</span></div><div class="metric-name">Доставок вовремя</div></div>
+  </div>
+</section>
+
+<!-- КАК ЗАКАЗАТЬ -->
+<section class="process" id="process">
+  <div class="section-header reveal">
+    <span class="section-label">Простой процесс</span>
+    <h2>Как сделать <em>заказ</em></h2>
+  </div>
+  <div class="process-steps">
+    <div class="ps reveal"><div class="ps-num">I</div><h3 class="ps-title">Выберите товары</h3><p class="ps-text">Получите консультацию нашего эксперта и подберите нужную продукцию</p></div>
+    <div class="ps reveal"><div class="ps-num">II</div><h3 class="ps-title">Оформите заказ</h3><p class="ps-text">Оплатите удобным способом: CLICK, Payme, перевод или наличные</p></div>
+    <div class="ps reveal"><div class="ps-num">III</div><h3 class="ps-title">Получите доставку</h3><p class="ps-text">Привезём за 1–2 дня по Узбекистану в целости и сохранности</p></div>
+  </div>
+</section>
+
+
+
+<!-- ЛОКАЦИЯ -->
+<section class="location" id="location">
+  <div class="reveal-left">
+    <div class="loc-label">Наш магазин</div>
+    <h2>Приходите к нам <em>лично</em></h2>
+    <p style="font-size:14px;color:var(--muted);line-height:1.9;font-weight:300;margin-bottom:10px;">Мы находимся в центре Чирчика. Большой выбор товаров в наличии. Профессиональная консультация на месте — бесплатно.</p>
+    <div class="loc-details">
+      <div class="loc-row">
+        <div class="loc-icon">◈</div>
+        <div class="loc-info"><strong>Адрес</strong>ул. Пулата Юсупова 37<br>Центральный базар, Чирчик<br><em style="color:var(--gold);font-size:12px;">Ориентир: магазин «Макро»</em></div>
+      </div>
+      <div class="loc-row">
+        <div class="loc-icon">☎</div>
+        <div class="loc-info"><strong>Телефон</strong><a href="tel:+998777417898" style="color:var(--gold);text-decoration:none;font-size:15px;font-weight:500;">+998 77 741 78 98</a></div>
+      </div>
+      <div class="loc-row">
+        <div class="loc-icon">✦</div>
+        <div class="loc-info"><strong>Мессенджеры</strong>
+          <a href="https://t.me/prosalonchirchik" style="color:var(--gold);text-decoration:none;">Telegram</a> · 
+          <a href="https://www.instagram.com/_prosalon/" style="color:var(--gold);text-decoration:none;">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="loc-map reveal-right">
+    🗺️
+    <div class="loc-pin">◆ Pro Salon, Центральный базар, Чирчик</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="section-header reveal">
+    <span class="section-label">Вопросы и ответы</span>
+    <h2>Часто <em>задаваемые</em> вопросы</h2>
+  </div>
+  <div class="faq-wrap">
+    <div class="faq-item">
+      <div class="faq-q"><span>Какие бренды вы продаёте?</span><div class="faq-toggle">+</div></div>
+      <div class="faq-a">Мы работаем с премиум брендами: MAC, NARS, Bobbi Brown, а также профессиональными линейками Kydra, Morfose, Concept, L'Oréal Professionnel, Matrix, Wella, Schwarzkopf и многими другими. Весь ассортимент сертифицирован и оригинален.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span>Есть ли скидки на оптовые покупки?</span><div class="faq-toggle">+</div></div>
+      <div class="faq-a">Да! Для салонов и постоянных клиентов действуют специальные оптовые скидки. Размер скидки зависит от объёма заказа. Напишите нам в Telegram или позвоните для уточнения условий.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span>Как быстро доставляете заказы?</span><div class="faq-toggle">+</div></div>
+      <div class="faq-a">Доставка по Чирчику — в течение 1 дня. По Узбекистану — 1–2 рабочих дня. Бесплатная доставка при заказе от 100 000 сум. Экспресс-доставка для срочных заказов — по запросу.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span>Какие способы оплаты принимаете?</span><div class="faq-toggle">+</div></div>
+      <div class="faq-a">Принимаем оплату через CLICK, Payme, банковский перевод и наличные при получении. Для юридических лиц возможна оплата по счёту-фактуре.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span>Можно ли вернуть или обменять товар?</span><div class="faq-toggle">+</div></div>
+      <div class="faq-a">Вся продукция поставляется с гарантией качества. При обнаружении дефекта мы заменим товар или вернём деньги в течение 7 дней с момента получения заказа.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <span class="cta-label">Начните прямо сейчас</span>
+  <h2 class="reveal">Ваш следующий заказ —<br><em>один клик</em></h2>
+  <p class="cta-sub reveal">Напишите нам и получите персональную рекомендацию от эксперта</p>
+  <div class="cta-actions reveal">
+    <a href="https://t.me/prosalonchirchik" class="btn-gold-inv">Telegram →</a>
+    <div class="cta-divider"></div>
+    <a href="tel:+998777417898" class="btn-light">+998 77 741 78 98</a>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">PRO <span>SALON</span></div>
+      <p class="footer-desc">Магазин профессиональной косметики и инструментов для бьюти мастеров. Качество. Надёжность. Экспертиза.</p>
+      <div class="social-row">
+        <a href="https://www.instagram.com/_prosalon/" class="soc">In</a>
+        <a href="https://t.me/prosalonchirchik" class="soc">Tg</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Навигация</h4>
+      <ul>
+        <li><a href="#advantages">Продукция</a></li>
+        <li><a href="#process">Как заказать</a></li>
+        <li><a href="#location">Магазин</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Категории</h4>
+      <ul>
+        <li><a href="#">Макияж</a></li>
+        <li><a href="#">Волосы</a></li>
+        <li><a href="#">Уход за кожей</a></li>
+        <li><a href="#">Инструменты</a></li>
+        <li><a href="#">Расходники</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Контакты</h4>
+      <div class="footer-contact">
+        <div class="fc-item"><strong>Адрес</strong>ул. Пулата Юсупова 37<br>Центральный базар, Чирчик<br>Ориентир: магазин «Макро»</div>
+        <div class="fc-item"><strong>Телефон</strong><a href="tel:+998777417898">+998 77 741 78 98</a></div>
+        <div class="fc-item"><strong>Доставка</strong>По всему Узбекистану</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 Pro Salon. Все права защищены.</span>
+    <span>Chirchiq, Uzbekistan</span>
+  </div>
+</footer>
+
+<script>
+// Cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cursor.style.left=mx+'px';cursor.style.top=my+'px';
+});
+function animRing(){
+  rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+document.querySelectorAll('a,button,.faq-q,.adv-card,.prod-card,.test-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='60px';ring.style.height='60px';ring.style.borderColor='rgba(201,169,110,0.8)'});
+  el.addEventListener('mouseleave',()=>{ring.style.width='36px';ring.style.height='36px';ring.style.borderColor='rgba(201,169,110,0.5)'});
+});
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+const io = new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'),i*80);
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+revealEls.forEach(el=>io.observe(el));
+
+// Count up
+function countUp(el){
+  const target=+el.dataset.count;
+  const dur=1800;const step=target/(dur/16);let cur=0;
+  const t=setInterval(()=>{
+    cur+=step;if(cur>=target){el.textContent=target;clearInterval(t)}
+    else el.textContent=Math.floor(cur);
+  },16);
+}
+const cio=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){countUp(e.target);cio.unobserve(e.target)}});
+},{threshold:0.5});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+// FAQ
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.querySelector('.faq-q').addEventListener('click',()=>{
+    const isOpen=item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('active'));
+    if(!isOpen)item.classList.add('active');
+  });
+});
+
+
+</script>
+</body>
+</html>
